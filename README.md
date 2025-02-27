@@ -1,4 +1,9 @@
-# Nuxt Minimal Starter
+# Nuxt Explaination Template
+
+This is a basic template for a Nuxt project. 
+The directories are set up in the Nuxt 4 method (`/app` folder at root contains client side files and directories.)
+
+This does not cover all aspects of Nuxt, but can be used as a reference for key concepts.
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
@@ -23,6 +28,13 @@ bun install
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
+
+
+### Note! 
+
+Be aware that you have to run `prepare`, `dev` or `build` in order to let Nuxt generate the types.
+
+If you create a composable without having the dev server running, TypeScript will throw an error, such as `Cannot find name 'useBar'`.
 
 ```bash
 # npm
