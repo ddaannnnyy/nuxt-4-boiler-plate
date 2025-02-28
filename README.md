@@ -7,6 +7,12 @@ This does not cover all aspects of Nuxt, but can be used as a reference for key 
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Branches
+
+In the `main` branch you will find example files and READMEs in each of the common directories and files.
+
+In the `bare-template` branch you will find the empty file structure with the examples and READMEs removed. Please note, i've kept Pinia installed as it is the officially recommended store management system.
+
 ## Setup
 
 Make sure to install dependencies:

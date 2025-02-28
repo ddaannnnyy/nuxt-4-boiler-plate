@@ -129,14 +129,26 @@
             </ul>
             <h3>V-HTML</h3>
             <p>v-html allows you to inject dynamic HTML into a parent element.</p>
-            <p>This is used sparingly because it can create XSS vulnerabilities, so don't v-html user data. It's mainly used for things like blog articles where the HTML is from a trusted WYSIWYG</p>
+            <p>This is used sparingly because it can create XSS vulnerabilities, so don't v-html user input. It's mainly used for things like blog articles where the HTML is from a trusted WYSIWYG</p>
             <p v-html="htmlExample"></p>
+        </section>
+        <section id="server-api-example">
+            <h2>Server API Example</h2>
+            <p>Requests made to the Nuxt Server are visible in the Browser Network tab, however the calls made inside this API are hidden from the client</p>
+            <form @submit.prevent="sendAPIRequest">
+                <input type="text" v-model="githubUsername">
+                <button>submit</button>
+            </form>
+            <pre>
+                {{ serverRequestResponse }}
+            </pre>
         </section>
     </div>
 </template>
 
 <script setup lang="ts">
-import type { VueElement } from 'vue';
+    import type { GitHubProfile } from '~/../server/api/returnTest.post';
+    import type { Simplify, SerializeObject } from 'nitropack'
 
     interface ListExample {
         id: string;
@@ -153,6 +165,8 @@ import type { VueElement } from 'vue';
     const showBlueBox = ref<boolean>(false);
     const animalToggle = ref<'dog' | 'cat'>('cat');
     const htmlExample = ref<string>('<span style="color:red">hello, world</span>');
+    const serverRequestResponse = ref<Simplify<SerializeObject<GitHubProfile> | null>>();
+    const githubUsername = ref<string>('ddaannnnyy');
     // with no default this type is inferred as string | undefined, but IMO it's best to specifically define the type.
     const vmodelText = ref<string>();
     const directiveListExample = ref<ListExample[]>([
@@ -199,6 +213,20 @@ import type { VueElement } from 'vue';
         console.log('emit caught', event);
         count.value = event.newValue;
     };
+
+    // API request to /server/api example
+    async function sendAPIRequest() {
+
+        // $fetch is provided by Nuxt and is just a straight wrapper over ofetch
+        const request = await $fetch('/api/returnTest', {
+            method: 'POST',
+            body: {
+                username: githubUsername.value
+            },
+            parseResponse: JSON.parse
+        });
+        serverRequestResponse.value = request;
+    }
 
     // lifecycle example
     onMounted(() => {
