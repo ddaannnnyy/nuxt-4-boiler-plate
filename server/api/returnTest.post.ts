@@ -3,7 +3,7 @@ import { H3Event } from 'h3';
 import type { APIExampleParams, GitHubProfile } from '~~/types';
 
 export default defineEventHandler(async (event: H3Event) => {
-
+    console.time('api-run');
     // read the body from the event with the build in method
     const body: APIExampleParams = await readBody(event);
 
@@ -26,8 +26,9 @@ export default defineEventHandler(async (event: H3Event) => {
     };
 
     const timeConsumingBackgroundTask = async () => {
+        console.timeLog('api-run', 'background task starting');
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log('time consuming task completed');
+        console.timeLog('api-run', 'background task ended');
     };
 
     async function getGithubProfile(username: string): Promise<GitHubProfile | null> {
@@ -69,6 +70,7 @@ export default defineEventHandler(async (event: H3Event) => {
         setResponseStatus(event, 200);
         // you can set a wait on a time consuming task. The API will return immediately but the instance will be kept alive until the process has finished.
         event.waitUntil(timeConsumingBackgroundTask());
+        console.timeLog('api-run', 'returning data from the api before the background is finished');
         return profile;
 
     } catch (error) {

@@ -1,26 +1,27 @@
 <template>
     <div class="container">
         <h1>This is an example page</h1>
-        <p>This example page displays how the Nuxt concepts display in the browser, but the source code in the <code>/app/pages/index.vue</code> has more comprehensive explainations.</p>
+        <p>This example page displays how the Nuxt concepts display in the browser, but the source code in the
+            <code>/app/pages/index.vue</code> has more comprehensive explainations.
+        </p>
         <!-- Using refs in the DOM -->
         <section id="ref-examples">
             <div class="count-container">
                 <p>The count is currently {{ count }}</p>
                 <button
-                class="count-button"
-                @click="count++">
+                        class="count-button"
+                        @click="count++">
                     increment
                 </button>
                 <button
-                class="count-button"
-                @click="count--">
+                        class="count-button"
+                        @click="count--">
                     decrement
                 </button>
                 <p>The Count Halved is {{ halvedCount }}</p>
                 <input type="text" ref="focusRef">
                 <button
-                @click.prevent="focusRef?.focus()"
-                >Click to focus the text box, using it's ref.</button>
+                        @click.prevent="focusRef?.focus()">Click to focus the text box, using it's ref.</button>
             </div>
         </section>
 
@@ -35,17 +36,25 @@
             <NuxtLink to="/nested/route">Go to another page</NuxtLink>
             <p>Why am I using the NuxtLink component instead of an anchor?</p>
             <p><code>NuxtLink</code> offers a fair few benefits, including pre-fetching, and better cache control.</p>
-            <p>While you can use it externally with the <code>external</code> and <code>targer</code> props I usually just use it for internal navigation. External Links use old school anchor tags.</p>
+            <p>While you can use it externally with the <code>external</code> and <code>targer</code> props I usually
+                just use it for internal navigation. External Links use old school anchor tags.</p>
         </section>
 
+        <section id="error-example">
+            <h2>Error Handling</h2>
+            <NuxtLink to="/does-not-exist">Go to a page that doesn't exist</NuxtLink>
+            <p>You can define a root level <code>error.vue</code> page to handle uncaught errors.</p>
+        </section>
 
         <section id="directive-example">
             <h2>Directive Examples</h2>
             <h3>Shorthands</h3>
-            <p>Nuxt provides shorthands of particular directives that you're much more likely to see, but they're directives under the hood.</p>
+            <p>Nuxt provides shorthands of particular directives that you're much more likely to see, but they're
+                directives under the hood.</p>
             <p>The most common are: </p>
             <ul>
-                <p>Please not when you're reading these in the source code. The directives in the list here are just text, they are non-functional</p>
+                <p>Please not when you're reading these in the source code. The directives in the list here are just
+                    text, they are non-functional</p>
                 <li>
                     <code>v-on</code>
                     <div>
@@ -65,17 +74,17 @@
             </ul>
             <h3>Conditional Classes</h3>
             <button
-                @click="showBlueBox = !showBlueBox"
-                class="toggle-button">Toggle Box Class</button>
+                    @click="showBlueBox = !showBlueBox"
+                    class="toggle-button">Toggle Box Class</button>
             <div
-             class="toggle-box"
-             :class="showBlueBox ? 'blue' : ''"></div>
+                 class="toggle-box"
+                 :class="showBlueBox ? 'blue' : ''"></div>
 
             <h3>V-Model</h3>
-            <input 
-            type="text" 
-            v-model="vmodelText" 
-            placeholder="type here to see the ref binding">
+            <input
+                   type="text"
+                   v-model="vmodelText"
+                   placeholder="type here to see the ref binding">
             <p>{{ vmodelText }}</p>
 
             <h3>V-If</h3>
@@ -85,12 +94,11 @@
             This example does both, but only v-model is necessary, so it's duplicating the change.
             This examples @change is janky but I just did it all in the template, this is not recommended for intermediate TS requirements. Just use a function...
             -->
-            <select 
-            name="animal-select" 
-            id="animal-select"
-            v-model="animalToggle"
-            @change="(event: Event) => animalToggle = ((event.currentTarget as HTMLSelectElement).value as 'cat' | 'dog')"
-            >
+            <select
+                    name="animal-select"
+                    id="animal-select"
+                    v-model="animalToggle"
+                    @change="(event: Event) => animalToggle = ((event.currentTarget as HTMLSelectElement).value as 'cat' | 'dog')">
                 <option value="cat">Cat</option>
                 <option value="dog">Dog</option>
             </select>
@@ -101,18 +109,20 @@
                 v-show toggles the display of an element
                 So when you select a cat the dog <p> is hidden, but the image of the dog does not exist in the DOM.
                 -->
-                <img 
-                v-if="animalToggle === 'dog'"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flat_Coated_Retriever_-_black.jpg/289px-Flat_Coated_Retriever_-_black.jpg" alt="dog-image-example">
-                <img 
-                v-else-if="animalToggle == 'cat'"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Felis_silvestris_-_July_2007-1.jpg/640px-Felis_silvestris_-_July_2007-1.jpg" alt="cat-image-example">
-                <img 
-                v-else
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Dog_and_Cat-Petsfriend.jpg/640px-Dog_and_Cat-Petsfriend.jpg" alt="dog-cat-image-fallback">
+                <img
+                     v-if="animalToggle === 'dog'"
+                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flat_Coated_Retriever_-_black.jpg/289px-Flat_Coated_Retriever_-_black.jpg"
+                     alt="dog-image-example">
+                <img
+                     v-else-if="animalToggle == 'cat'"
+                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Felis_silvestris_-_July_2007-1.jpg/640px-Felis_silvestris_-_July_2007-1.jpg"
+                     alt="cat-image-example">
+                <img
+                     v-else
+                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Dog_and_Cat-Petsfriend.jpg/640px-Dog_and_Cat-Petsfriend.jpg"
+                     alt="dog-cat-image-fallback">
                 <p
-                v-show="animalToggle === 'dog'"
-                >Check out this cool dog</p>
+                   v-show="animalToggle === 'dog'">Check out this cool dog</p>
             </div>
             <h3>V-For</h3>
             <ul>
@@ -123,20 +133,22 @@
                 -->
                 <ClientOnly>
                     <li
-                    v-for="(item, index) in directiveListExample"
-                    :key="item.id">
+                        v-for="(item, index) in directiveListExample"
+                        :key="item.id">
                         {{ `${index} - ${JSON.stringify(item)}` }}
                     </li>
                 </ClientOnly>
             </ul>
             <h3>V-HTML</h3>
             <p>v-html allows you to inject dynamic HTML into a parent element.</p>
-            <p>This is used sparingly because it can create XSS vulnerabilities, so don't v-html user input. It's mainly used for things like blog articles where the HTML is from a trusted WYSIWYG</p>
+            <p>This is used sparingly because it can create XSS vulnerabilities, so don't v-html user input. It's mainly
+                used for things like blog articles where the HTML is from a trusted WYSIWYG</p>
             <p v-html="htmlExample"></p>
         </section>
         <section id="server-api-example">
             <h2>Server API Example</h2>
-            <p>Requests made to the Nuxt Server are visible in the Browser Network tab, however the calls made inside this API are hidden from the client</p>
+            <p>Requests made to the Nuxt Server are visible in the Browser Network tab, however the calls made inside
+                this API are hidden from the client</p>
             <form @submit.prevent="sendAPIRequest">
                 <input type="text" v-model="githubUsername">
                 <button>submit</button>
@@ -150,7 +162,7 @@
 
 <script setup lang="ts">
     import type { GitHubProfile } from '~/../server/api/returnTest.post';
-    import type { Simplify, SerializeObject } from 'nitropack'
+    import type { Simplify, SerializeObject } from 'nitropack';
 
     interface ListExample {
         id: string;
@@ -244,6 +256,7 @@
 </script>
 
 <style scoped>
+
     /* styles in this scoped style tag will not escape the page */
     .container {
         display: flex;
@@ -274,7 +287,7 @@
         object-fit: cover;
     }
 
-    .animal-image-container > img {
+    .animal-image-container>img {
         max-width: 100%;
     }
 </style>
