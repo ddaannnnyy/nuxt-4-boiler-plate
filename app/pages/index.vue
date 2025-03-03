@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h1>This is an example page</h1>
+        <p>This example page displays how the Nuxt concepts display in the browser, but the source code in the <code>/app/pages/index.vue</code> has more comprehensive explainations.</p>
         <!-- Using refs in the DOM -->
         <section id="ref-examples">
             <div class="count-container">
@@ -44,6 +45,7 @@
             <p>Nuxt provides shorthands of particular directives that you're much more likely to see, but they're directives under the hood.</p>
             <p>The most common are: </p>
             <ul>
+                <p>Please not when you're reading these in the source code. The directives in the list here are just text, they are non-functional</p>
                 <li>
                     <code>v-on</code>
                     <div>
@@ -78,7 +80,7 @@
 
             <h3>V-If</h3>
             <!-- 
-            In most cases you don't have to manually hande the event on HTMLInputs
+            In most cases you don't have to manually hande the event on HTML Inputs
             v-model does the heavy lifting for you. You can if you'd like to though.
             This example does both, but only v-model is necessary, so it's duplicating the change.
             This examples @change is janky but I just did it all in the template, this is not recommended for intermediate TS requirements. Just use a function...
@@ -232,6 +234,8 @@
     onMounted(() => {
         // basic composable example
         sayHello();
+        // basic util example
+        console.log(formatNumber(1234));
     });
 
     onBeforeRouteLeave(() => {
@@ -240,7 +244,6 @@
 </script>
 
 <style scoped>
-
     /* styles in this scoped style tag will not escape the page */
     .container {
         display: flex;
